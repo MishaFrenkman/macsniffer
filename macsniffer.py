@@ -50,27 +50,28 @@ def log(msg):
 		print(msg)
 
 # grep multiple macs (OR)
+'''
 macs = {
-	"funke" : "4C:7C:5F:51:22:86",
-	"misha" : "54:E4:3A:1E:CB:87"
+	"mac1" : "AB:12:CD:34:EF:56",
+	"mac2" : "98:FE:76:DC:54:BA"
 }
 multi = "'"
 for i in macs.itervalues():
 	multi += i + "|"
 
 multi = multi[:-1] + "'"
+'''
 
 msg = {
 	1: "'Welcome!'",
 	0: "'Bye bye :('"
 }
 
-
 ### Arguments ###
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--interface', default="en1", help="Desired wifi interface")
 parser.add_argument('-n', '--net', '--network', default="192.168.2.0/24", help="Local network (eg. 192.168.1.0/24)")
-parser.add_argument('-m', '--mac', default=macs["misha"], help="MAC Address of desired device")
+parser.add_argument('-m', '--mac', required=True, help="MAC Address of desired device")
 parser.add_argument('-l', '--log', action="store_true", help="Logs stdout to logfile (monitormac.log)")
 parser.add_argument('-w', '--wait', default=30, help="Defines how long to wait before recognize abscence of device")
 
@@ -79,7 +80,6 @@ args = parser.parse_args()
 
 
 cmd = "sudo nmap -e %s -sP %s | egrep %s" % (args.interface, args.net, args.mac)
-#cmd = "sudo arp-scan --interface %s -l |grep %s" % (args.interface, macs["misha"].lower())
 log(cmd)
 #################
 
