@@ -10,6 +10,7 @@ This script reacts on connection/disconnection of a specific device in your loca
 - run with sudo
 - provide your own network and device information
 - edit push() with your own script
+- nmap must be installed
 
 ### Known Bugs
 
