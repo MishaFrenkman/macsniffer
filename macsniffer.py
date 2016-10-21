@@ -12,6 +12,7 @@ Usage:
 	- run with sudo
 	- provide your own network and device information
 	- edit push() with your own script
+	- nmap must be installed
 """
 
 from time import sleep
@@ -70,16 +71,15 @@ msg = {
 ### Arguments ###
 parser = argparse.ArgumentParser()
 parser.add_argument('-i', '--interface', default="en1", help="Desired wifi interface")
-parser.add_argument('-n', '--net', '--network', default="192.168.2.0/24", help="Local network (eg. 192.168.1.0/24)")
+parser.add_argument('-n', '--net', '--network', required=True, help="Local network (eg. 192.168.1.0/24)")
 parser.add_argument('-m', '--mac', required=True, help="MAC Address of desired device")
 parser.add_argument('-l', '--log', action="store_true", help="Logs stdout to logfile (monitormac.log)")
 parser.add_argument('-w', '--wait', default=30, help="Defines how long to wait before recognize abscence of device")
+parser.add_argument('-s', '--sleep', default=5, help="Scan every n seconds")
 
 args = parser.parse_args()
 
-
-
-cmd = "sudo nmap -e %s -sP %s | egrep %s" % (args.interface, args.net, args.mac)
+cmd = "sudo nmap -e %s -sP %s | grep %s" % (args.interface, args.net, args.mac)
 log(cmd)
 #################
 
@@ -120,5 +120,5 @@ while 1:
 	log("Time away : %d" % diff) 
 
 	#scan every n seconds
-	sleep(5)
+	sleep(args.sleep)
 #######
