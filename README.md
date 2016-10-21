@@ -2,7 +2,7 @@
 
 ### About
 
-This script reacts on a connection/disconnection of a specific device in your local network based on its MAC 
+This script reacts on connection/disconnection of a specific device in your local network based on its MAC 
 
 ### Usage
 
