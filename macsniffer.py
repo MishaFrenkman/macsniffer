@@ -74,8 +74,8 @@ parser.add_argument('-i', '--interface', default="en1", help="Desired wifi inter
 parser.add_argument('-n', '--net', '--network', required=True, help="Local network (eg. 192.168.1.0/24)")
 parser.add_argument('-m', '--mac', required=True, help="MAC Address of desired device")
 parser.add_argument('-l', '--log', action="store_true", help="Logs stdout to logfile (monitormac.log)")
-parser.add_argument('-w', '--wait', default=30, help="Defines how long to wait before recognize abscence of device")
-parser.add_argument('-s', '--sleep', default=5, help="Scan every n seconds")
+parser.add_argument('-w', '--wait', default=30, type=int, help="Defines how long to wait before recognize abscence of device")
+parser.add_argument('-s', '--sleep', default=5, type=int, help="Scan every n seconds")
 
 args = parser.parse_args()
 
@@ -110,7 +110,7 @@ while 1:
 			end = timer()
 			diff = end - start
 
-		if (diff > args.wait):
+		if (diff > int(args.wait)):
 			log("sending..")
 			push(msg[0])
 			diff = -1
