@@ -50,18 +50,6 @@ def log(msg):
 	else:
 		print(msg)
 
-# grep multiple macs (OR)
-'''
-macs = {
-	"mac1" : "AB:12:CD:34:EF:56",
-	"mac2" : "98:FE:76:DC:54:BA"
-}
-multi = "'"
-for i in macs.itervalues():
-	multi += i + "|"
-
-multi = multi[:-1] + "'"
-'''
 
 msg = {
 	1: "'Welcome!'",
